@@ -5,11 +5,17 @@ A picture of our ideal robot is shown (to be added)
 
 
 Team Objectives: 
+
 Week 3: Robot moving in straight line
+
 Week 4: Have a function to turn the robot
+
 Week 5: Have the robot to be able to detect and follow a straight line
+
 Week 6: The robot can follow the line around corners
+
 Week 7: The robot can complete at least 60% of the course
+
 
 
 ###Weekly Progress Checklist
