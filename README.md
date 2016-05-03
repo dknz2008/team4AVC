@@ -1,5 +1,5 @@
 # team4AVC
-AVC Project Team 4, Dylan Kumar, Tom Clark, Ilan Greenwood, Keisuke Hashimoto
+AVC Project Team 4, Dylan Kumar, Tom Clark, Ilan Greenwood, Keisuke Hashimoto, Matthew Blayney.
 
 A picture of our ideal robot is shown (to be added)
 
