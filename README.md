@@ -1,20 +1,20 @@
 # team4AVC
 AVC Project Team 4, Dylan Kumar, Tom Clark, Ilan Greenwood, Keisuke Hashimoto, Matthew Blayney.
 
-A picture of our ideal robot is shown (to be added)
+Team Objectives:
+Week 1: Intial Design, Network and Driving code written (not tested)
 
-
-Team Objectives: 
+Week 2: Robot built and first code uploaded to Raspberry Pi
 
 Week 3: Robot moving in straight line
 
-Week 4: Have a function to turn the robot
+Week 4: Have a function to turn the robot and Tested
 
 Week 5: Have the robot to be able to detect and follow a straight line
 
 Week 6: The robot can follow the line around corners
 
-Week 7: The robot can complete at least 60% of the course
+Week 7: The robot can complete at least 80% of the course
 
 
 
