@@ -45,10 +45,36 @@ int main()
       for(int n = 1; n <= 16; n++){
          for(int i = 0; i < 20; i++){
               GroupOfPixels[n] = GroupOfPixels[n] + arrayOfPixels[i*n]; 
-
          }
+
          i = 0;
          AverageGroupOfPixels[n-1] = GroupOfPixels[n-1]/20; 
+     }
+
+
+        //Finding max value
+        int max = 0;
+        for(int i = 0; i < 16; i++)
+        {
+          if(AverageGroupOfPixels[i] > max){
+            max = AverageGroupOfPixels[i];
+          }
+        }
+
+        //Finding min value
+        int min = 0;
+
+        for(int i = 0; i < 16; i++)
+        {
+          if(AverageGroupOfPixels[i] < min){
+            min = AverageGroupOfPixels[i];
+          }
+        }
+
+
+     if(){
+
+
      }
 
       update_screen(); //  - updates video output area of the screen. 
