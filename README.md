@@ -2,6 +2,7 @@
 AVC Project Team 4, Dylan Kumar, Tom Clark, Ilan Greenwood, Keisuke Hashimoto, Matthew Blayney.
 
 Team Objectives:
+
 Week 1: Intial Design, Network and Driving code written (not tested)
 
 Week 2: Robot built and first code uploaded to Raspberry Pi
