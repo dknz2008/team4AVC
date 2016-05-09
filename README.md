@@ -1,5 +1,5 @@
 # team4AVC
-AVC Project Team 4, Dylan Kumar, Tom Clark, Ilan Greenwood, Keisuke Hashimoto, Matthew Blayney.
+AVC Project Team 4, Dylan Kumar, Tom Clark, Ilan Greenwood, Keisuke Hashimoto, Michael Blayney.
 
 Team Objectives:
 
