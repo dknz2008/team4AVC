@@ -1,68 +1,61 @@
-#include <iostream>
 #include <stdio.h>
 #include <time.h>
 extern "C" int InitHardware();
 extern "C" int ReadAnalog(int ch_adc);
 extern "C" int Sleep(int sec, int usec);
 extern "C" int SetMotor(int motor ,int dir,int speed);
+extern "C" int take_picture();
+extern "C" char get_pixel(int row,int col,int colour);
+extern "C" int update_screen();
+extern "C" int open_screen_stream();
+extern "C" int close_screen_stream();
+
 
 int main()
 {
-  InitHardware();
-  int adc_reading = 0;
-  
-  //Drives forward and stops abruptly if something is in front of it
-  while (adc_reading < 600)
-  {
-    adc_reading = ReadAnalog(0);
-    SetMotor(1, 1, 255);
-    SetMotor(2, 1, 255);
-    //Sleep(0,500000);
+
+  int arrayOfPixels[320]; // making array of pixels to store values in 
+
+  while(true){
+
+      InitHardware();
+
+      int adc_reading = 0;
+      
+      open_screen_stream(); // Puts the video output on desktop screen
+
+		take_picture();
+
+		float kp = 0.5;
+		int sum = 0;
+		int i, w, s;
+
+		for(i=0, i<320, i++){
+			w = get_pixel(i,120,3);
+			if(w>127){
+				s=1;
+			};
+			else{
+				s=0;
+			};
+			sum = sum + (i-160)*s;
+		}
+
+		double proportional_signal = sum*kp;
+
+
+		set_motor(1, proportional_signal);
+  		set_motor(2, -1*proportional_signal);
+
+
+      update_screen(); //  - updates video output area of the screen. 
   }
-  
-  //Turns left
-  SetMotor(1, 0, 255);
-  SetMotor(2, ,1 255);
-  
-  //Turns left
-  SetMotor(1, 0, 255);
-  SetMotor(2, ,1 255);
-  
-  //Turns left until there are no obstructions
-  while (adc_reading >= 600)
-  {
-    adc_reading = ReadAnalog(0);
-    SetMotor(1, 0, 255);
-    SetMotor(2, ,1 255);
-    //Sleep(0,500000);
-  }
-  
-  //Turns right until there are no obstructions
-  while (adc_reading >= 600)
-  {
-    adc_reading = ReadAnalog(0);
-    SetMotor(1, 1, 255);
-    SetMotor(2, ,0 255);
-    //Sleep(0,500000);
-  }
-  
-  //Drives forward and slows down when it gets close to a wall
-   while (adc_reading >= 600)
-  {
-    adc_reading = ReadAnalog(0);
-    SetMotor(1,1,adc_reading/700*255);
-    //Sleep(0,500000);
-  }
-  
-  //Gentle stop
-  int count = 255;
-  while (count > 0)
-  {
-    SetMotor(1, 0, count);
-    SetMotor(2, ,1 count);
-    count = count -10;
-    //sleep(0,500000)''
-  }
+
+  close_screen_stream()
   
   return 0;
 }
+
+
+
+
