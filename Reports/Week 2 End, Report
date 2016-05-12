@@ -2,4 +2,35 @@ LAB attendance is 100% for week 2.
 
 This week we didnt meet our pre-set Team Objective;
 this is not a issue for this week as it will be useful to gauge progression.
-Our team however did meet their personal tasks,
+Our team however did meet their personal tasks. 
+Being on track the new tasks for week 3 have been set to suit our achievements thus far.
+This tasks have been accepted by all team members as the way forward for your project.
+All team members are finding their workloads about right, with our social chat on facebook
+is proving useful for any help needed.
+
+During this LAB we held a team meeting with the following results:-
+Note - Meeting attendance 100% 
+Topic: Robot design - Tracks against wheels for drive.
+Taking into consideration these factors:-
+Space for turning - As the tacks are wider than wheels will the AV be able to -
+1. Pass through the gate.
+2. Navigate the maze.
+The result is yes and still has sufficient space.
+Speed - Does it affect the AV speed and if so, positively or negatively.
+We found that theoretically it should slow it down via friction and weight factors,
+but increase torque. ie. turning ability.
+Stability - How will stability be affected
+Stability will be greatly increased reducing risk of turning over or terrian issues.
+Potential coding problems - As the Robot may react in a different way when travelling,
+so turns may have to be coded differently; our insight leads us to believe more coding would not be needed.
+Power usuage - Will the tracks cause the power to drain faster.
+We figure it will due to more friction and weight but not a huge amount.
+Furthermore it may be reduced due to stability therefore line reading ability.
+
+In conclusion, we had a majority vote rules and voted 5:0 in favor of tracks.
+Sighting that the pros outweigh the cons and the team is enthusiastic to work with them.
+
+AV and design photos to come, Ilan our Hardware Tech has a collection that will be uploaded this week.
+No extra undesignated tasks needed to be performed this week.
+
+AV = Autonomous Vehicle.
