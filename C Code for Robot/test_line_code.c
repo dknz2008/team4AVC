@@ -41,7 +41,7 @@ int main()
                 printf("sum = %d", sum);
                 if(sum > 0){  
                 //turn_left();  
-                        set_motor(1, -105);
+                        set_motor(1, 105);
                         set_motor(2, 105);
         		Sleep(1,0);
                 }
@@ -49,14 +49,14 @@ int main()
                 if(sum <  0){
                         //turn_right();
 
-                        set_motor(1, 105);
+                        set_motor(1, -105);
                         set_motor(2, -105);
                 	printf("drive right");
                 	Sleep(1,0);             
 }
                 if(sum == 0){
                         //drive_forward();
-                        set_motor(1, 70);
+                        set_motor(1, -70);
                         set_motor(2, 70);
                         printf("drive forward");
                         Sleep(1,0);
