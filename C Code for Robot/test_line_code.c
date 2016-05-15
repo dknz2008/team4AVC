@@ -28,7 +28,7 @@ int main()
                 int sum = 0;
                 int i, w, s;    
                 for(i=0; i<320; i++){
-                        w = get_pixel(i,120,3);
+                        w = get_pixel(120,i,3); //the variable was in the wrong column so the code was reading a column instead of a row and the column never gets to 320 because the height of the camera resolution is 240.
                         if(w>180){
                           s=1;
                         }    
