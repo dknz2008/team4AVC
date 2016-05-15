@@ -38,7 +38,7 @@ int main (){
 
 		int adc_reading = 0;
 
-		//take_picture();
+		take_picture();
 		 
 
 	
