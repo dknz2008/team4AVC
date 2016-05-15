@@ -44,14 +44,14 @@ int main (){
 	
 		for(i = 0; i < 64; i++){
 			//need to check if 120 is the middle or not
-			arrayOfPixels[i] = get_pixel(i*5, 120, 3);
+			arrayOfPixels[i] = get_pixel(120,i*5, 3);
 			//Getting total of the pixels along the pane
 			total = total + arrayOfPixels[i];
 
 		}	
 	
 		for(i=0; i<320; i++){
-			w = get_pixel(i,120,3);
+			w = get_pixel(120,i,3);
 			//printf("%f\n",w);	
 			if(w>127){
 				s = 1;
