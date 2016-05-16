@@ -1,0 +1,52 @@
+Meeting on Thursday 12th May 2016
+All Members attended.
+SSH been taught to Ilan, Dylan and Tom.
+
+Robot connected and current code placed on the robot. 
+Found that code does not work.
+Tested until robot moved but did not follow line.
+Reorganised meeting for Friday 13th May 2016 - all have accepted and been reminded on friday via facebook.
+
+Meeting Friday 13th May 2016
+Attendance is 80% Michael is missing from group.
+
+Today we are going through code and examining how much code we have.
+We have code for reading white line and motor functions.
+Here are the results of that code.
+
+Test case 1:
+When its near the left side of the white tape, it goes forwards,
+When it has past the left side of the white tape it goes left (which suggests motors wrong way in code)
+When it has past the right side, it goes in reverse
+
+Test case 2:
+total black, turning left
+to the right of the line its going straight
+dead on the line its turning left
+to the left of the line its reversing
+
+Test case 3:
+Total black , turn left
+right of line turns left 
+centre - it sometimes follows forwards and then does not.
+
+Test case 4: 
+Goes in reverse
+when follows white line temporarily goes into forwards then goes into backwards.
+
+Talked with Ilan about Battery Mount concepts. Flipping the the Raspberry Pi to create more space at the front
+for sensors and sensor mounts. Also the addition of a 3rd wheel.
+Found Github copy and pasting does not work as characters will appear invisible on the terminal system.
+Worked out to translate unicode to askii code and send from windows laptop of the text document.
+We have the Progress Report due this monday
+Ilan and Tom are focusing code 
+Hardware - Raise the camera mounts, shorten chassis and flip Raspberry Pi.
+
+Dylan - going to try and get an emulator working
+Ilan is going to Start on coding and also has workload of progress report and hardware designs.
+Tom - is going to learn the c code and produce some basic thoery on what the robot needs to do in situations.
+Michael - has prior commitments
+Keisuke - Looking at C Code and will try and get up to date with where we are at.
+
+Summary:
+From todays code tests and talks with team that have attended, we have decided to re-write code
