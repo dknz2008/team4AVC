@@ -1,6 +1,0 @@
-Week 4:
-My original plan was to create an array for all the points, averaging every 20 pixels over the width. However, as lectures went on and we learnt about PID, we decided to change to the approach taught in lectures.
-I have created some basic line reading code, and turning code, I do not currently know if it will work. 
-When the robot is completed/fixed, we will test the line reading code with the KD from the lecture, and try to edit it for our robot. 
-
-The plan is to get that working, so I will test as much as possible when the robot is complete. 
