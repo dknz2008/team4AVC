@@ -1,0 +1,27 @@
+This is some psudeocode to process what our code needs to achieve.
+
+Pixel reading from Camera.
+
+With a 320 pixel camera, this needs to be a loop that reads from left to right.
+From the readings assigning each pixel to either black or white
+Having the code react to a set of white pixels (around 20 pixels wide)
+Having the robot set variables to these numbers for use in the motor functions
+
+The Motor Functions
+
+For a straight forward movement have the black pixels left and the right of the white line even or close to . 
+If statement for left turning, if the robot reads more black pixels on the left of the white line then turn 
+reduce speed of the left motor. Have this amplify the more black pixels on the left vs the pixels on the right.
+
+For the turn right function the same as left but in reverse.
+
+For when the white line is across the whole pixel range, the motors do not change speed i.e. doesnt alter course
+
+For when the Robot gets to a dead end no white pixels. Stop, reverse using PID and then 180 degree turn until white line is picked up.
+Carrying on as usual.
+
+Infrared sensors
+
+For the slow down method. Have the robot reduce speed when approaching a object regardless of colour. 
+This would require a sensor in front of the robot. This infrared sensor will take a reading of light. 
+With when reading a white wall it
