@@ -1,0 +1,28 @@
+SSH help:
+  ssh pi@10.140.96.241
+  password: pi
+  
+Linux command line help:
+  ls = list files in directory
+  cd = change directory
+  cd .. = change directory to the one above
+  cp <filename> <destination directory> = copys the file into the given file directory (You have to be in the directory of the file you want to copy)
+  mv <filename> <destination directory> = same as copy but moves
+  rm filename = deletes (removes) file
+
+  Github help:
+    git clone https://github.com/dknz2008/team4AVC = Clones the Github repository (Only need to do this once) (Our gitclone is located on the pi in folder ~/E101/avc/team4AVC)
+    git pull = Fetches the files from the repository and merges it with your local one on the pi
+    git push = Pushes all the modified local objects on the pi to the repository
+    git commit -a -m "<commit message>" = Commits to github
+
+Compilation:
+  without makefile = gcc -o <desired end filename> <filename.cpp> -lE101
+  with makefile = make (the makefile must have the filename specified that you want to compile)
+  
+Execute:
+  sudo ./<compiled filename>
+  
+Notes:
+  Some directories on the pi are not able to be saved to and will give an error saying permission denied
+    -A way around this is to make a copy the folder that you cant save to with a different name and it should resolve the problem
