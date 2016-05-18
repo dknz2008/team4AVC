@@ -12,124 +12,84 @@ extern "C" int select_IO(int chan, int direct);
 int main (){
       // This sets up the RPi hardware and ensures
       // everything is working correctly
-      init(0);
-
-	
-//	int arrayOfPixels[64]; //For every 5 pixels (340/5 = 64)
-//	int total = 0;
-	float kd = 0.6;
-//	float ki = 0.5;
-//	float kd = 0.2;
-
-//	float total_error = 0;
+	init(0);
+	float kd = 1.2;
 	float current_error = 0;
-//	int previous_error = 0;
-// 	int  error_diff = 0;
-//	int  error_period = 0; //need to change
 	float  pid;
-
 	int w, s;
-
-	double proportional_signal;	
-//	int integral_signal = 0;
-//	int derivative_signal = 0;
-	
-
-//	for(i = 0;  i < 8; i++){
-
-//	select_IO(i, 0);
-//	write_digital(i, 1);
-//	}
-
+	double proportional_signal;
+	int quarterTurnTime = 1;
+	int halfTurnTime = 1;
+	int onLineMin = 30;
+	int onLineMax = 50;
+	int halfLineValue = 180;
 
         while (1) {
-
+		take_picture();
+		int color = get_pixel(102, 55, 3);
 	
-	take_picture();
-	int color = get_pixel(102, 55, 3);
-//	printf("Color=%d\n", color);
-//	int adc_reading = 0;
-
-		
 		current_error = 0;
 		proportional_signal = 0;
 	
-//		for(i = 0; i < 64; i++){
-			//need to check if 120 is the middle or not
-//			arrayOfPixels[i] = get_pixel(120,i*5, 3);
-			//Getting total of the pixels along the pane
-//			total = total + arrayOfPixels[i];
-
-//		}	
-	
 		for(int i=0; i<320; i++){
 			w = get_pixel(i,120,3);
-//			printf("%d\n",w);
-			if(w>50){
+			if(w>120){
 				s = 1;
 			}else{
 
 				s = 0;
 			}				
 
-//if to right, positive
-				current_error = (current_error + (i-160)*s);
-
-			//	printf("current_error is  %f \n", current_error);
-
+			//if to right, positive
+			current_error = (current_error + (i-160)*s);
 			}
 
-
-
-
-	              //  printf("PID: %f \n", pid);
-		
-		
-		
-		//Random error checking code, most of which isn't implemented yet
-//		total_error = total_error + current_error;
-//		integral_signal = total*ki;
-		
-//		error_diff = current_error-previous_error;
-//		derivative_signal = (error_diff/error_period)*kd;
-//		previous_error = current_error;
-		
-
 		//Getting the robot to move
-		proportional_signal = current_error*kd;	
-	//	printf("Current Error: %f \n", current_error);
-	//	printf("Proportional Signal %f \n", proportional_signal);
+		//numbers here need to be thoroughly tested
+		if(s >= onLineMin && s < onLineMax)//if number of white pixels detected is between onLineMin and onLineMax pixels (on white line)
+		{
+			proportional_signal = current_error*kd;	
+	    		pid =( proportional_signal );	
+			printf("PID: %f \n", pid);
 	
-		
-		int abc;
-		if(proportional_signal > 0){
-			abc = 1;
-		}else if(proportional_signal < 0){
-			abc = -1;
-		}else{
-			abc = 1;
+			if(pid > 255){				
+				set_motor(1,-1*255);
+				set_motor(2, 255);	     		
+			}else if(pid < -255){
+				set_motor(1, 255);
+	                       set_motor(2,- 1*255);
+			}else{
+				set_motor(1, -pid);
+				set_motor(2, -pid);
+			}
 		}
-    		pid =( 100*abc + ( proportional_signal/(160*kd) ) );	
-		
-
-		
-	
-
-		
-		printf("PID: %f \n", pid);
-
-		if(pid > 255){				
+		else if(s >= onLineMax && s < halfLineValue)//if number of white pixels detected is between onLineMax and halfLineValue pixels (roughly half of line is white - 90 degree turn)
+		{
+			//turn 90 degrees in that direction
+			if(pid > 255){				
+				set_motor(1,-1*255);
+				set_motor(2, 255);
+				sleep(quarterTurnTime,0);
+			}else if(pid < -255){
+				set_motor(1, 255);
+	                        set_motor(2,- 1*255);
+	                        sleep(quarterTurnTime,0);
+		}
+		else if(s >= halfLineValue) //if number of white pixels detected is greater than halfLineValue pixels (over half of the reading is white - T intersection - turn 90 in a direction)
+		{
+			//turn 90 degrees left or right
 			set_motor(1,-1*255);
-			set_motor(2, 255);	     		
-		}else if(pid < -255){
-			set_motor(1, 255);
-                       set_motor(2,- 1*255);
-		}else{
-			set_motor(1, -pid);
-			set_motor(2, -pid);
+			set_motor(2, 255);
+			sleep(quarterTurnTime,0);
+		}
+		else //anything less than onLineMin pixels of white detected (must be dead end - turn 180)
+		{
+			//turn 180 degrees
+			set_motor(1,-1*255);
+			set_motor(2, 255);
+			sleep(halfTurnTime,0);
 		}
       }
 
 return 0;
 }
-
