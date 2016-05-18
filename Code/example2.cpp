@@ -17,7 +17,7 @@ int main (){
 	
 //	int arrayOfPixels[64]; //For every 5 pixels (340/5 = 64)
 //	int total = 0;
-	float kd = 0.6;
+	float kd = 1.2;
 //	float ki = 0.5;
 //	float kd = 0.2;
 
@@ -65,7 +65,7 @@ int main (){
 		for(int i=0; i<320; i++){
 			w = get_pixel(i,120,3);
 //			printf("%d\n",w);
-			if(w>50){
+			if(w>120){
 				s = 1;
 			}else{
 
@@ -101,15 +101,15 @@ int main (){
 	//	printf("Proportional Signal %f \n", proportional_signal);
 	
 		
-		int abc;
+	/**	int abc;
 		if(proportional_signal > 0){
 			abc = 1;
 		}else if(proportional_signal < 0){
 			abc = -1;
 		}else{
 			abc = 1;
-		}
-    		pid =( 100*abc + ( proportional_signal/(160*kd) ) );	
+		}*/
+    		pid =( proportional_signal );	
 		
 
 		
