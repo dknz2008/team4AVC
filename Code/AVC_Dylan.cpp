@@ -18,6 +18,7 @@ int main (){
         float  pid_left;
         float pid_right;
         int w, s;
+        int w1; //second line
         double proportional_signal;
 
         while (1) {
@@ -32,9 +33,10 @@ int main (){
 
                 int num = 0;
                 int dark = 0;
+                int dark1 = 0;
                 for(int i=0; i<320; i++){
                         w = get_pixel(i,120,3);
-
+                        w1 = getPixel(i, 1, 3); // at the top of the camera (or 239, check it)
                         if(w>127){
                                 s = 1;
                                 num++;
@@ -42,6 +44,11 @@ int main (){
                                 dark++;
                                 s = 0;
                         }
+                        
+                        if(w1 < 127){
+                                dark1++;
+                        }
+                        
  current_error = (current_error + (i-160)*s);
 
                         }
@@ -50,7 +57,15 @@ int main (){
                 //Getting the robot to move
                 proportional_signal = current_error*kd;
 
-                int abc;
+
+                if(dark1 >= 315 && dark < 300){
+                         pid_left = (-100);
+                         pid_right = (100);
+                }else{
+
+
+
+                
 //              if(dark >= 320){
 //                      printf("dark");
 //                      pid_left =  -100;
@@ -60,6 +75,7 @@ int main (){
 //              }else{
                         pid_left =( 80 +  proportional_signal/(160*2) );
                         pid_right = (80 - proportional_signal/(160*2) );
+                }
 //              }
 
                 set_motor(1, -pid_left);
