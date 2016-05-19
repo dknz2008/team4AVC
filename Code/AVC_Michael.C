@@ -13,9 +13,10 @@ int main (){
       // This sets up the RPi hardware and ensures
       // everything is working correctly
 	init(0);
-	float kd = 1.2;
+	float kd = 20;
 	float current_error = 0;
-	float  pid;
+	float  pid_left;
+	float pid_right;
 	int w, s;
 	double proportional_signal;
 	int quarterTurnTime = 1;
@@ -26,23 +27,32 @@ int main (){
 
         while (1) {
 		take_picture();
-		int color = get_pixel(102, 55, 3);
+		float current_error_average = 0;
+		pid_left = 0;
+		pid_right = 0;
+		
+		//int color = get_pixel(102, 55, 3);
 	
 		current_error = 0;
 		proportional_signal = 0;
+		
+		int num = 0;
+		int dark = 0;
 	
 		for(int i=0; i<320; i++){
-			w = get_pixel(i,120,3);
-			if(w>120){
+			w = get_pixel(120,i,3);
+			if(w>127){
 				s = 1;
+				num ++;
 			}else{
-
+				dark ++;
 				s = 0;
 			}				
 
 			//if to right, positive
 			current_error = (current_error + (i-160)*s);
 			}
+			current_error_average = current_error/num;
 
 		//Getting the robot to move
 		//numbers here need to be thoroughly tested
@@ -52,16 +62,18 @@ int main (){
 	    		pid =( proportional_signal );	
 			printf("PID: %f \n", pid);
 	
-			if(pid > 255){				
-				set_motor(1,-1*255);
-				set_motor(2, 255);	     		
-			}else if(pid < -255){
-				set_motor(1, 255);
-	                       set_motor(2,- 1*255);
-			}else{
-				set_motor(1, -pid);
-				set_motor(2, -pid);
-			}
+			//if(pid > 255){				
+			//	set_motor(1,-1*255);
+			//	set_motor(2, 255);	     		
+			//}else if(pid < -255){
+			//	set_motor(1, 255);
+	                //      set_motor(2,- 1*255);
+			//}else{
+				pid_left = (80 + proportional_signal / (160*2));
+				pid_right = (80 - proportional_signal / (160*2));
+				set_motor(1, -pid_left);
+				set_motor(2, -pid_right);
+			//}
 		}
 		else if(s >= onLineMax && s < halfLineValue)//if number of white pixels detected is between onLineMax and halfLineValue pixels (roughly half of line is white - 90 degree turn)
 		{
