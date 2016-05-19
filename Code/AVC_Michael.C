@@ -15,6 +15,7 @@ int main (){
 	init(0);
 	float kd = 20;
 	float current_error = 0;
+	float pid = 0;
 	float  pid_left;
 	float pid_right;
 	int w, s;
@@ -81,27 +82,27 @@ int main (){
 			if(pid > 255){				
 				set_motor(1,-1*255);
 				set_motor(2, 255);
-				sleep(quarterTurnTime,0);
+				Sleep(quarterTurnTime,0);
 			}else if(pid < -255){
 				set_motor(1, 255);
 	                        set_motor(2,- 1*255);
-	                        sleep(quarterTurnTime,0);
+	                        Sleep(quarterTurnTime,0);
 		}
 		else if(s >= halfLineValue) //if number of white pixels detected is greater than halfLineValue pixels (over half of the reading is white - T intersection - turn 90 in a direction)
 		{
 			//turn 90 degrees left or right
 			set_motor(1,-1*255);
 			set_motor(2, 255);
-			sleep(quarterTurnTime,0);
+			Sleep(quarterTurnTime,0);
 		}
 		else //anything less than onLineMin pixels of white detected (must be dead end - turn 180)
 		{
 			//turn 180 degrees
 			set_motor(1,-1*255);
 			set_motor(2, 255);
-			sleep(halfTurnTime,0);
+			Sleep(halfTurnTime,0);
 		}
       }
-
+}
 return 0;
 }
