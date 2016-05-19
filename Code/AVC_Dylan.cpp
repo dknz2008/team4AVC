@@ -33,7 +33,7 @@ int main (){
                 int num = 0;
                 int dark = 0;
                 for(int i=0; i<320; i++){
-                        w = get_pixel(120,i,3);
+                        w = get_pixel(i,120,3);
 
                         if(w>127){
                                 s = 1;
