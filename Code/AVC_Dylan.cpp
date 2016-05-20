@@ -31,8 +31,8 @@ int main (){
         time_t sec;
         time_t sec1;
         sec = time(NULL);
-        sec1 = time(NULL);
-
+        int seconds_passed = 0;
+        
         while (1) {
 
         take_picture();
@@ -74,29 +74,39 @@ int main (){
 //              printf("current error average: %f\n", current_error_average);
                 printf("current error: %f \n", current_error);
 
-
-        //      printf("sec: %ld\n", sec);
-                //sec1
-                //if(sec >= 3){
-                //      dir = current_error;
-                //      sec = time(NULL);
-        //      }
+                  sec1 = time(NULL);
+                  if((sec1 - sec) == 1){
+                        sec = time(NULL);
+                        if(dark1 >=320  && dark >=320){
+                              dir = current_error;
+                              seconds_passed++;
+                              if(seconds_passed = 2){
+                                    dir = current_error;
+                              }
+                              if(seconds_passed >= 4 ){
+                                    dir = -current_error;
+                                    seconds_passed = 0;
+                              }
+                              
+                        }
+                  }
                  
                 if(dark1 >=320  && dark >=320){
-                        dir = current_error;
+
+                        //dir = current_error;
 
                         if(dir >= 0){
-                                pid_left = (-150); //turn left i think
-                                pid_right = (150);
+                                pid_left = (-100); //turn left i think
+                                pid_right = (100);
                                // Sleep(1, 800);
                                 //changeTurn = 1;
                         }else{
-                                pid_left = (150);
-                                pid_right = -150; //probably turn right
+                                pid_left = (100);
+                                pid_right = -100; //probably turn right
                                 //Sleep(1,800);
                                 //changeTurn = 0;
                         }
-                        Sleep(1, 400000);
+                       // Sleep(1, 400000);
                 }else{
 
 //              if(dark >= 320){
