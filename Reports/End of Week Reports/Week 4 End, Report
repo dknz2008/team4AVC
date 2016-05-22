@@ -41,16 +41,21 @@ when follows white line temporarily goes into forwards then goes into backwards.
 Talked with Ilan about Battery Mount concepts. Flipping the the Raspberry Pi to create more space at the front
 for sensors and sensor mounts. Also the addition of a 3rd wheel.
 Found Github copy and pasting does not work as characters will appear invisible on the terminal system.
-Worked out to translate unicode to askii code and send from windows laptop of the text document.
+Worked out to translate unicode to ASKII code and send from Windows laptop onto the text document.
 We have the Progress Report due this monday
-Ilan and Tom are focusing code 
+Ilan and Tom are focusing code this week.
 Hardware - Raise the camera mounts, shorten chassis and flip Raspberry Pi.
 
-Dylan - going to try and get an emulator working
-Ilan is going to Start on coding and also has workload of progress report and hardware designs.
-Tom - is going to learn the c code and produce some basic thoery on what the robot needs to do in situations.
+Dylan - is going to try and get an emulator working.
+Ilan - Start on coding and also has workload of progress report and hardware designs.
+Tom - Learn the C Code and produce some basic thoery on what the robot needs to do in situations.
 Michael - has prior commitments
 Keisuke - Looking at C Code and will try and get up to date with where we are at.
 
 Summary:
 From todays code tests and talks with team that have attended, we have decided to re-write code
+
+The team have not all met their goals. Ilan and Tom have achieved was what required with Dylan producing some 
+working code on the weekend which is a great achievement for where we are at.
+Michael is working on coding at home to catch up.
+Keisuke has not commited anything.
