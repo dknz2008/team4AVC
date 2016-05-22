@@ -47,13 +47,13 @@ int main (){
 			}
 			else
 			{
-							if(adc_Left < wallDist)
-			{
-				//Drive forward one sector
-				set_motor(1,speed);
-				set_motor(2,speed);
-				Sleep(sectorTime,usectorTime);
-			}
+				if(adc_Left < wallDist)
+				{
+					//Drive forward one sector
+					set_motor(1,speed);
+					set_motor(2,speed);
+					Sleep(sectorTime,usectorTime);
+				}
 			
 		}
 		else if(adc_Front > tooClose) //If there is a wall infront of the robot
