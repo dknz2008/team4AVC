@@ -1,0 +1,18 @@
+LAB is 100% 
+
+Meeting on friday with Iland Dylan and Tom attending for group chat and catch up before the weekend.
+Robot testing from Dylan earlier in the day and week saw progress to the end part of the second Quadrant.
+Illan and Tom have gone through the code and learnt hwo the robot is working testing some theories on the robot 
+to try and achieve through the 3rd quadrant.
+We did not maanged to get past the T juncton, tried changing P on the PID to achieve better turning but found that 
+new code was required for instance of all white line to all black. This meant code that read a strip infront of the 
+robot ahead of the current readings to sight this issue and have a response for this situation.
+
+Michael has adjusted some of his motor code this week.
+Dylan has achieved progress on the white line and fulfilled his weekly tasks.
+Illan has designed some sensor and battery mounts, as well as learning code
+Kisuke has not commited anything.
+Tom has completed reports and learnt the code and posed some of his own for a potential backup, to be tested.
+
+Team objective has almost been reached with the AV now reading the line and turning corners successfully. 
+Noting that the networking code has been achieved and that simply adding this to the main code will be done this week.
