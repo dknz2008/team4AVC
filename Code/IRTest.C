@@ -23,3 +23,4 @@ int main (){
 		printf("%d\n", adc_Left);
 		printf("%d\n", adc_Right);
 	}
+}
