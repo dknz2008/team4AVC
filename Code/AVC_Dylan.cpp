@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include <time.h>
 extern "C" int init(int);
 extern "C" int write_digital( int chan , char level );
@@ -31,9 +31,11 @@ int main (){
         time_t sec;
         time_t sec1;
         sec = time(NULL);
+        sec1 = time(NULL);
         int seconds_passed = 0;
-        
-        while (1) {
+        int abcd = 0;
+
+        while (abcd < 600) {
 
         take_picture();
         float current_error_average = 0;
@@ -42,7 +44,30 @@ int main (){
 
                 current_error = 0;
                 proportional_signal = 0;
-                               w1 = 0;
+       float  pid_left;
+        float pid_right;
+        int w, s;
+        int w1; //second line
+        double proportional_signal;
+        float dir = 0;
+        int changeTurn = 0;
+        time_t sec;
+        time_t sec1;
+        sec = time(NULL);
+        sec1 = time(NULL);
+        int seconds_passed = 0;
+        int abcd = 0;
+
+        while (abcd < 600) {
+
+        take_picture();
+        float current_error_average = 0;
+                pid_left = 0;
+                pid_right = 0;
+
+                current_error = 0;
+                proportional_signal = 0;
+                w1 = 0;
                 w  = 0;
                 int num = 0;
                 int dark = 0;
@@ -64,49 +89,63 @@ int main (){
 
  current_error = (current_error + (i-160)*s);
 
-                        }
+
+                      }
                         current_error_average = current_error/num;
-                       current_error_average = current_error/num;
 
                 //Getting the robot to move
                 proportional_signal = current_error*kd;
 
 //              printf("current error average: %f\n", current_error_average);
+                printf("proportional_signal %f \n", proportional_signal/320);
                 printf("current error: %f \n", current_error);
 
-                  sec1 = time(NULL);
-                  if((sec1 - sec) == 1){
-                        sec = time(NULL);
-                        if(dark1 >=320  && dark >=320){
-                              dir = current_error;
-                              seconds_passed++;
-                              if(seconds_passed = 2){
-                                    dir = current_error;
-                              }
-                              if(seconds_passed >= 4 ){
-                                    dir = -current_error;
-                                    seconds_passed = 0;
-                              }
-                              
+
+
+                //sec1 = time(NULL);
+                //printf("sec: %ld", sec);
+                //printf("sec1: %ld", sec1);
+                               sec = time(NULL);
+                if((sec-sec1) >= 1){
+                        sec1 = time(NULL);
+                        if(dark1 >=320 && dark >=320){
+                                //dir = current_error;
+                                seconds_passed++;
+                                if(seconds_passed = 1){
+                                        dir = current_error;
+                                }
+                                if(seconds_passed >= 3){
+                                        dir = -current_error;
+                                        seconds_passed = 0;
+                                }
                         }
-                  }
-                 
-                if(dark1 >=320  && dark >=320){
 
-                        //dir = current_error;
+                }
 
-                        if(dir >= 0){
-                                pid_left = (-100); //turn left i think
-                                pid_right = (100);
+                if(num >= 310 && dark1 < 320){
+                        pid_left = -100;
+                        pid_right = -100;
+                        Sleep(1, 800000);
+                }else
+                 if(dark1 >=320  && dark >=320){
+                //      dir = current_error;
+
+                        if(dir > 0){
+                                pid_left = (-120); //turn left i think
+                                pid_right = (120);
                                // Sleep(1, 800);
                                 //changeTurn = 1;
-                        }else{
-                                pid_left = (100);
-                                pid_right = -100; //probably turn right
+                        }else if(dir < 0){
+ pid_left = (120);
+                                pid_right = -120; //probably turn right
                                 //Sleep(1,800);
                                 //changeTurn = 0;
-                        }
-                       // Sleep(1, 400000);
+                        }else{
+                                pid_left = -120;
+                                pid_right = 120;
+                        //
+                        } 
+                        //Sleep(1, 400000);
                 }else{
 
 //              if(dark >= 320){
@@ -116,14 +155,15 @@ int main (){
 //                      Sleep(0, 5000);
 //                      dark = 0;
 //              }else{
-                        pid_left =( 80 +  proportional_signal/(160*2) );
-                        pid_right = (80 - proportional_signal/(160*2) );
 
-              }
 
-                  set_motor(1, -pid_left);
-                  set_motor(2, -pid_right);
- 
+                        pid_left =(-proportional_signal/(320));
+                        pid_right =  -proportional_signal/(320);
+             }
+
+                 set_motor(1, -pid_left);
+                 set_motor(2, -pid_right);
+
 /**             if(pid > 255){
                         set_motor(1,-1*255);
                         set_motor(2, 255);
@@ -133,8 +173,9 @@ int main (){
                 }else{
                         set_motor(1, -pid);
                         set_motor(2, pid);
-                }
+  }
         */
+        abcd++;
  }
 
         set_motor(1,0);
