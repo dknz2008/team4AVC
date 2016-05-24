@@ -60,7 +60,7 @@ int main (){
         sec1 = time(NULL);
         int seconds_passed = 0;
         int abcd = 0;
-
+        int quad3 = 0;
 
 
 //      network();
@@ -99,7 +99,7 @@ while (1) {
                                 dark1++;
                         }
 
- current_error = (current_error + (i-160)*s);
+                                current_error = (current_error + (i-160)*s);
 
                         }
   //                      current_error_average = current_error/num;
@@ -136,22 +136,10 @@ while (1) {
                 }
 
                 if(num >= 320 && dark1 < 320){
-                        pid_left = -100;
-                        pid_right = -100;
-                        Sleep(1, 800000);
+                        quad3 = 1;
                 }else
                  if(dark1 >=320  && dark >=320){
-                        dir = current_error;
 
-                        if(dir > 0){
-                                pid_left = (-120); //turn left i think
-                                pid_right = (120);
-                                changeTurn = 1;
-                        }else if(dir < 0){
-                                pid_left = (120);
-                                pid_right = -120; //probably turn right
-
-                        }else{
                                 pid_left = -120;
                                 pid_right = 120;
 
@@ -159,10 +147,32 @@ while (1) {
                         //Sleep(1, 400000);
                 }else{
 
-pid_left = 80 + proportional_signal/(320);
+                        pid_left = 80 + proportional_signal/(320);
                         pid_right = 80 - proportional_signal/(320);
 
              }
+             
+             
+                if(quad3 = 1){
+                        if(dark < 100){
+                                quad3 = 0;
+                        }else{
+                               dir = current_error;
+
+                                if(dir > 0){
+                                        pid_left = (-120); //turn left i think
+                                        pid_right = (120);
+                                        changeTurn = 1;
+                                }else if(dir < 0){
+                                        pid_left = (120);
+                                        pid_right = -120; //probably turn right
+                                }else{
+                                        
+                                }
+                        }
+                }
+             
+             
                 printf("pid right: %f", pid_left);
                 printf("pid left: %f", pid_right);
                 if(pid_left >= 255){
