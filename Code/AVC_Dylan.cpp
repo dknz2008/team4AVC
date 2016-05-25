@@ -40,7 +40,7 @@ int main (){
       init(0);
 
 
-
+        bool center = false;
       int msec =0;
         int trigger = 10;
         clock_t before = clock();
@@ -70,7 +70,7 @@ int main (){
 while (1) {
 
 
-        take_picture();
+        
         float current_error_average = 0;
                 pid_left = 0;
                 pid_right = 0;
@@ -82,41 +82,31 @@ while (1) {
                 int num = 0;
                 int dark = 0;
                 int dark1 = 0;
-                for(int i=0; i<320; i++){
-                        w = get_pixel(i,120,3);
-                        w1 = get_pixel(i, 0, 3); // at the top of the camera (or 239, check $
-                      //  printf("w1: %d  \n", w1);
-                //      printf("w:%d \n", w);
-                        if(w>127){
-                                s = 1;
-                                num++;
-                        }else{
-                                dark++;
-                                s = 0;
-                        }
-
-                        if(w1 < 127){
-                                dark1++;
-                        }
-
-                                current_error = (current_error + (i-160)*s);
-
-                        }
-  //                      current_error_average = current_error/num;
+                
+                while(!center){
+                        take_picture();
+                        for(int i=0; i<320; i++){
+                                w = get_pixel(i,120,3);
+                                w1 = get_pixel(i, 0, 3); 
+                                if(w>127){
+                                        s = 1;
+                                        num++;
+                                }else{
+                                        dark++;
+                                        s = 0;
+                                }
+        
+                                if(w1 < 127){
+                                        dark1++;
+                                }
+        
+                                        current_error = (current_error + (i-160)*s);
+        
+                                }
+                }
 
                 //Getting the robot to move
                 proportional_signal = current_error*kd;
-
-//              printf("current error average: %f\n", current_error_average);
-//              printf("proportional_signal %f \n", proportional_signal/320);
-//              printf("current error: %f \n", current_error);
-
-
-
-
-                //sec1 = time(NULL);
-                //printf("sec: %ld", sec);
-                //printf("sec1: %ld", sec1);
 
                 sec = time(NULL);
                 if((sec-sec1) >= 1){
@@ -132,7 +122,6 @@ while (1) {
                                         seconds_passed = 0;
                                 }
                         }
-
                 }
 
                 if(num >= 320 && dark1 < 320){
@@ -167,7 +156,7 @@ while (1) {
                                         pid_left = (120);
                                         pid_right = -120; //probably turn right
                                 }else{
-                                        
+                                        quad3 = 0;    
                                 }
                         }
                 }
