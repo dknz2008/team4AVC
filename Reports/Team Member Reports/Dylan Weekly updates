@@ -4,3 +4,44 @@ I have created some basic line reading code, and turning code, I do not currentl
 When the robot is completed/fixed, we will test the line reading code with the KD from the lecture, and try to edit it for our robot. 
 
 The plan is to get that working, so I will test as much as possible when the robot is complete. 
+
+
+CODING DIFFICULTIES, HARDWARE ISSUES, AND LATE CHANGING:
+
+2 Weeks before the AVC due date, I had managed to get the robot to get through half of the third quadrant by myself.
+The first T junction was hardcoded with a sleep time. Although this worked, I found it was quite variable especially because
+tracks use a lot of power up, and depending on the amount of power the battery had would depend on the turning speeds.
+This presented a huge issue, which I spent a week or so trying to figure out. One option that I tried was creating a timer. 
+This timer would work by having 2 times. The end time would be subtracted from the start time, giving me the time of each interval. (or a second if I chose to). I would then reset the timer, and recount for each second (the timer would give the amount of seconds from 1980 or something like that).
+
+However, as it only counted in the seconds, this also presented a challange I needed more precision and I couldn't just say:
+'if the robot sees black for 1 second, turn', because by that time it would be too late and the robot would have moved too far ahead.
+
+This brought me to the final solution which I believe should work, but for some weird reason was not working. I dont know why, the robot seemed to get into the T intersection code, or whatever turning code, but it just stopped moving like it didn't have enough power, or something was wrong. I honestly don't know. Other times it just keep going straight ahead and stopped reading the white line. 
+
+Basically the idea used a while loop (that way i didn't have to count/time anything). So when it read the conditions for a junction, it would turn as long as it kept reading black. 
+e.g. while (dark > 300){ keep turning }
+It would turn in the direction of the error, and when I tested it ages ago (before hardware was changed) that method did kind of work, I just didn't know how to get it to continue turning.
+The issue before was that it would start turning then the current error would change, so it would change the other way.
+Using a while loop would ensure it would continue until it read white again (following current error before the turn).
+
+On tuesday we got the gate code sorted and now the gate goes up and down.
+
+So we were at that stage aroundish, and then boom, the pi got a sick new upgrade. But suddenly the code wasn't working so good with the pi. It was like upgrading from windows XP to vista.
+The first issue we had was the track kept falling off. This was on friday (and the robot was due on tuesday the next week, so we basically had hardly any time). 
+
+This was suprizingly an easy fix. I talked to Arthur and basically the distance between the two axles of the wheels need to be 8.5cm when using tracks. They were 8.3 when I measured. A few hours later Ilan added an extra bracket and everything was sweet (the tracks didn't fall off again and now it was way tighter). 
+
+This was good to see, but now on the last sharp corner the robot deviated from its desired trajectory and went off the path.
+We tried changing KP values and stuff, but we couldn't seem to get it sorted. After being in the lab for like 6 hours I went home. Who knows if the robot will work on the day or what will happen. Pretty sure Ilan and Tom were there for the next hour or so, so they might have gotten some progress.
+
+On that note, where on earth is our other team member Keisuke. I haven't seen him for 3 weeks now, and I don't think he's done anything.
+We defintely should have had more people on coding and earlier, and not had a hardware change so late. Also coding should have been balanced between programmers more, considering I was just software tester and our 'main' coder didn't write any substantial code that was actually tested whatsoever. So basically it was like having a 3 person team (while other teams had 6 people) which was an issue.  
+It might have also been a bad idea to have used tracks, or maybe we needed to make our thing lighter. I feel it just presented a lot of issues.
+Also, I should have implemented a KD and maybe even KI earlier. I didn't because I got it to through second quad with only using proportional, so I didn't think it would matter having a derivative response. However, once our hardware changed I don't think KP was enough as the robot was too heavy.
+
+We also tried other things like reading a left hand side vertical line and a right hand vertical side and turning based on which of the two was dark/bright.
+I don't think a lot of the issues were with logic but rather just weird stuff happening to the pi. Maybe it didn't have enough power or processing power, maybe it was some obscure C coding issue, to be honest I don't know since we never solved these issues.
+
+If you have any questions on any this stuff, contact me and I will provide exposition. My ramblings aren't very succient. 
+
