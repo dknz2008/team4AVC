@@ -1,4 +1,4 @@
-#include <stdio.h>
+include <stdio.h>
 #include <time.h>
 extern "C" int init(int);
 extern "C" int write_digital( int chan , char level );
@@ -43,7 +43,7 @@ int cameraRead(){
 
 
                         take_picture();
-                       for(int i=0; i<320; i++){
+                        for(int i=0; i<320; i++){
                                 w = get_pixel(i,120,3);
 //                                w1 = get_pixel(i, 0, 3);
                                 if(w>100){   
@@ -64,6 +64,8 @@ int cameraRead(){
         return dark;  
 
 }
+
+
 
 int main (){
       // This sets up the RPi hardware and ensures
@@ -87,7 +89,7 @@ int main (){
         double proportional_signal;
         int derivative_signal;
         float dir = 0;
-        int changeTurn = 0;
+int changeTurn = 0;
         time_t sec;
         time_t sec1;
         sec = time(NULL);
@@ -97,7 +99,7 @@ int main (){
         int quad3 = 0;
 
         int turnNum = 1;
-//        network();
+        network();
 
 
 //      set_motor(1, 220);
@@ -106,6 +108,7 @@ int main (){
         int t_junction = 0;
         int missFirst = 0;
 while (1) {
+
 
 
         float current_error_average = 0;
@@ -119,7 +122,7 @@ while (1) {
                 int num = 0;
                 int dark = 0;
                 int dark1 = 0;
-
+                
 
                         take_picture();
                         for(int i=0; i<320; i++){
@@ -132,20 +135,19 @@ while (1) {
                                         dark++;
                                         s = 0;
                                 }
-
-                                if(w1 < 50){
+ if(w1 < 50){
                                         dark1++;
                                 }
-
+        
                                         current_error = (current_error + (i-160)*s);
-
+        
                                 }
   
 
 
 
 
-
+             
                 //printf("current error %f", current_error);
                 //Getting the robot to move
 
@@ -178,11 +180,11 @@ while (1) {
                 if(t_junction == 2 && dark >=320 && turnNum !=3){
                         //right turn
                         set_motor(1, 180);
-                        set_motor(2, -180);
-                        Sleep(0, 300000);
+set_motor(2, -180);
+                        Sleep(0, 500000);
                         set_motor(1, 220);
                         set_motor(2, 220);
-                        Sleep(1, 300000);
+                        Sleep(1, 600000);
                         while(dark >=300){
                                 dark = cameraRead();
                                 set_motor(1, -210);
@@ -193,6 +195,7 @@ while (1) {
 
 
                 }
+
 
 
                 if(num >=300 & turnNum !=3){
@@ -217,11 +220,11 @@ while (1) {
                         Sleep(0,300000);
                         set_motor(1 ,-210);
                         set_motor(2, -210);
-                        Sleep(1, 300000);
+                        Sleep(1, 500000);
                         t_junction = 2;
                         turnNum++;
                 }
-                //printf("pid right: %f\n", pid_left);
+ //printf("pid right: %f\n", pid_left);
                 //printf("pid left: %f\n", pid_right);
                 if(pid_left >= 220){
                         pid_left = 220;
@@ -261,10 +264,3 @@ while (1) {
         set_motor(2, 0);
 return 0;
 }
-
-
-
-
-
-
- 
